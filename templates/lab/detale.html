@@ -1,0 +1,44 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="navbar">
+  <a href="http://127.0.0.1:8000/lab/pages/">Сторінки</a>
+  <a href="http://127.0.0.1:8000/lab/userlink/">Додати посилання від імені користувача</a>
+  <a href="http://127.0.0.1:8000/admin/">Сторінка адміністратора</a>
+
+</div>
+<div class="contentSearchPage">
+<div class="side">
+{% block title %}{% endblock %}
+
+{% block content %}
+    <h3>{{ article.article_title }}</h3>
+    <p>{{ article.article_text }}</p>
+    <em>{{ article.pub_date }}</em>
+   <hr>
+
+    <form action="{% url 'lab:leve_comment' article.id %}" method="post">
+
+        {% csrf_token %}
+
+        <input type="text" required placeholder="Your name" name="name">
+        <br>
+        <textarea name="text" required="" placeholder="Your comment" cols="25" rows=" 15"></textarea>
+        <br>
+        <button type="submit">Leave comment</button>
+    </form>
+
+     <hr>
+    {% if comments %}
+        {% for c in comments %}
+            <p><strong>{{ c.author_name }}</strong>
+            <p>{{ c.comment_text }}</p>
+            </p>
+        {% endfor %}
+    {% else %}
+        No comments
+    {% endif %}
+
+{% endblock %}
+</div></div>

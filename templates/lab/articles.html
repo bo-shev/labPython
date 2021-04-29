@@ -1,0 +1,29 @@
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+
+<div class="navbar">
+  <a href="http://127.0.0.1:8000/lab/pages/">Сторінки</a>
+  <a href="http://127.0.0.1:8000/lab/userlink/">Додати посилання від імені користувача</a>
+  <a href="http://127.0.0.1:8000/admin/">Сторінка адміністратора</a>
+
+</div>
+ <div class="contentSearchPage">
+<div class="side">
+
+{% block title %}Links{% endblock %}
+    
+{% block content %}
+    {% if all_articles %}
+        <ul>
+        {% for a in all_articles %}
+            <li><a href="{% url 'lab:detale' a.id %}">{{ a.article_title }}</a></li>
+        {% endfor %}
+        </ul>
+
+    {% else %}
+      посилання не знайдені
+    {% endif %}
+       <a href="http://127.0.0.1:8000/lab/">На головну</a>
+{% endblock %}
+    </div></div>

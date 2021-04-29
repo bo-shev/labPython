@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<div class="navbar">
+  <a href="http://127.0.0.1:8000/lab/pages/">Сторінки</a>
+  <a href="http://127.0.0.1:8000/lab/userlink/">Додати посилання від імені користувача</a>
+  <a href="http://127.0.0.1:8000/admin/">Сторінка адміністратора</a>
+
+</div>
+<form action="{% url 'lab:add_new_user_link' %}" method="post">
+
+        {% csrf_token %}
+        <input type="text" required placeholder="your name" name="author">
+         <br>
+        <input type="text" required placeholder="link name" name="name">
+        <br>
+        <input type="text" required placeholder="link url" name="url">
+        <br>
+
+        <button class="button" type="submit">add link</button>
+    </form>
+<a href="http://127.0.0.1:8000/lab/">На головну</a>

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Links{% endblock %}
+    
+{% block content %}
+    <div class="navbar">
+  <a href="http://127.0.0.1:8000/lab/pages/">Сторінки</a>
+  <a href="http://127.0.0.1:8000/lab/userlink/">Додати посилання від імені користувача</a>
+  <a href="http://127.0.0.1:8000/admin/">Сторінка адміністратора</a>
+
+</div>
+    <div class="row">
+    <div class="side">
+    {% if all_links %}
+        <ul>
+        {% for a in all_links %}
+        <li><a href="{% url 'lab:addview' a.id %}">{{ a.link_name }}</a></li>
+        {% endfor %}
+        </ul>
+
+    {% else %}
+      посилання не знайдені
+    {% endif %}
+    </div>
+     <hr>
+    <div class="side">
+    {% if all_user_links %}
+        <ul>
+        {% for a in all_user_links %}
+        <li><a href="{% url 'lab:adduserview' a.id %}">{{ a.link_name }}</a></li>
+        {% endfor %}
+        </ul>
+
+    {% else %}
+      посилання не знайдені
+    {% endif %}
+    </div>
+    </div>
+    <hr>
+    <div class="footer">
+
+
+    <ul>
+        <li><a class="btn default" href="http://127.0.0.1:8000/lab/pages/">Сторінки</a></li>
+        <li><a class="btn default" href="http://127.0.0.1:8000/lab/userlink/">Додати посилання від імені користувача</a></li>
+    </ul>
+    </div>
+{% endblock %}
+    
